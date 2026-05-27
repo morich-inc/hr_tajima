@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>田島弘章 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>田島弘章 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 一般財団法人地域・教育魅力化プラットフォーム</a>
+  <a href="#k2">2. モノグサ株式会社</a>
+  <a href="#k3">3. Edv Future株式会社（エデュフューチャー）</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">教育戦略ディレクター</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">一般財団法人地域・教育魅力化プラットフォーム</div>
+  <div class="co-url"><a href="https://c-platform.or.jp/" target="_blank">https://c-platform.or.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>島根県松江市東本町二丁目25-6 みらいBASE2階</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">統廃合の危機に瀕していた島根県海士町の隠岐島前高校を、全国から生徒が集まる人気校へと再生させた奇跡のストーリーから始まったこの団体。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>統廃合の危機に瀕していた島根県海士町の隠岐島前高校を、全国から生徒が集まる人気校へと再生させた奇跡のストーリーから始まったこの団体。2017年の法人化以降、その成功モデルを全国に展開し、今や35道府県173校以上の公立高校が参画する「地域みらい留学」プラットフォームを構築している。日本財団ソーシャルイノベーター最優秀賞受賞という華々しい実績を持ち、内閣府、経産省、文科省など中央省庁からの事業受託も多数獲得している。</p><p>最近では日本ベンチャー・フィランソロピー基金からの資金提供・パーソルホールディングスとのビジョンパートナー契約など、民間企業との戦略的連携も加速している。</p><p>「意志ある若者にあふれる持続可能な地域・社会をつくる」というミッションのもと、教育による地方創生という新たな社会システムを構築中だ。地域の高校が単なる進学予備校ではなく、地域課題解決の実践的学びの場となり、都市部の生徒が地方で越境体験を積む。これは日本の教育と地域活性化の両方を同時に解決する革新的アプローチである。</p><p><strong>代表理事：岩本悠氏</strong><br>東京都出身、学生時代にアジア・アフリカ20か国の地域開発に関わり、印税でアフガニスタンに学校建設。ソニー勤務後、2007年から島根県の隠岐島前高校魅力化プロジェクトを推進し、2017年に本財団を設立。日本財団「特別ソーシャルイノベーター最優秀賞」や「日本クリエイション大賞」など多数受賞。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 教育戦略ディレクター</div>
+          <div class="job-preview">都道府県・自治体・教育委員会と連携し、高校教育改革プロジェクトの戦略設計～実行までを統括するポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>都道府県‧⾃治体‧教育委員会と連携し、⾼校教育改⾰プロジェクトの戦略設計〜実⾏までを統括するポジションです。単なる学校伴⾛ではなく、地域全体の教育構想を描き、⾏政‧学校‧地域産業‧⺠間企業など多様なステークホルダーを巻き込みながら、教育改⾰を推進していただきます。</p><p>また、本ポジションはプレイヤー業務に留まらず、20名前後の営業‧プロジェクト推進‧伴⾛チームを横断的にマネジメントし、案件獲得‧品質管理‧組織づくりまで担う事業責任者候補の位置づけです。</p><p><strong>業務内容</strong></p><ul><li><strong>教育改革プロジェクトの戦略設計</strong><br>都道府県単位での教育改革構想の設計、KPI設計／ロードマップ策定、高校魅力化・探究学習等の施策立案、教育DX推進、成果検証／改善提案</li><li><strong>都道府県教育委員会との折衝</strong><br>都道府県教育委員会との協議・提案、教育行政との合意形成、行政向け提案資料作成、次年度提案／案件継続提案</li><li><strong>調査・分析</strong><br>高校・自治体ヒアリング、地域課題分析（人口動態・産業構造等）、アンケート設計／分析、定量・定性データ分析、有識者ヒアリング</li><li><strong>組織・チームマネジメント</strong><br>営業・デリバリーチーム（20名前後）のマネジメント、業務委託メンバーを含む体制構築、プロジェクト品質管理、KPIマネジメント、メンバー育成・評価、ナレッジマネジメント</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>公共系コンサルティング経験</li><li>教育行政／自治体関連業務経験</li><li>教育事業の企画・推進経験</li><li>シンクタンク／リサーチ業務経験</li><li>教育スタートアップ等での事業推進経験</li><li>10名以上の組織マネジメント経験</li><li>複数プロジェクトの統括経験</li><li>行政・自治体との折衝経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>文部科学省／教育委員会経験</li><li>公共領域コンサルティングファーム経験</li><li>地方創生関連事業経験</li><li>教育DX推進経験</li><li>PMO構築経験</li><li>業務委託組織マネジメント経験</li><li>教育政策関連業務経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 それ以外</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 みらいハイスクール／事務局長</div>
+          <div class="job-preview">教育委員会とともに、みらいハイスクール構想の実現に向けた戦略・経営ガバナンス構築の責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>教育委員会とともに、みらいハイスクール構想の実現に向けた戦略・経営ガバナンス構築の責任者（事務局長候補）として、運営戦略、教育政策の現場実装、行政折衝、および中長期の事業計画策定を統括します。本ポジションは、学校に係るスキームの戦略的設計から、教育委員会等との高度な制度調整まで、教育改革を構造レベルから推進する&quot;経営・戦略サイド&quot;の役割です。</p><p><strong>業務内容</strong></p><ul><li><strong>戦略策定・経営管理</strong><br>学校のあり方の戦略的設計、中長期戦略および事業計画の策定、予算管理、資金調達支援、理事会・経営会議の運営、経営数値のモニタリング・KPI設計</li><li><strong>対外連携・行政対応（最重要業務）</strong><br>文部科学省・経済産業省・自治体・県教育委員会との高度な折衝、各種制度・認可対応、学校運営モデルへの落とし込み、外部パートナー（企業・地域団体・出資者等）とのアライアンス構築・調整</li><li><strong>教育戦略・構造設計</strong><br>オンライン × 探究 × 地域連携を軸とした新しい教育モデルの構造設計、教育DX推進、新規プロジェクトの企画・立案</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>コンサルティングファームでの公共／教育／経営戦略領域のコンサルティング経験</li><li>文部科学省・経済産業省などの省庁／行政／公共領域での政策立案や事業推進経験（5〜7年程度を想定）</li><li>教育スタートアップや大手教育事業での経営企画・事業責任者経験</li><li>抽象的な課題をブレイクダウンする「課題構造化能力」および「戦略設計力」</li><li>法令・制度を理解し、官民を跨ぐ高度なステークホルダー調整力・行政折衝力</li><li>プロジェクトマネジメント能力</li><li>数値管理・財務の基礎知識</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>文部科学省等の省庁において、法令改定や政策立案に直接携わった経験</li><li>学校法人の設立、または新規事業立ち上げ（ゼロイチ）経験</li><li>資金調達やガバナンス体制構築の経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 それ以外</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://c-platform.or.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">Business Planning/事業企画</span><span class="badge badge-blue">未上場・N-1</span></div>
+  <div class="co-name">モノグサ株式会社</div>
+  <div class="co-url"><a href="https://corp.monoxer.com/company/" target="_blank">https://corp.monoxer.com/company/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都千代田区飯田橋3-8-5 住友不動産飯田橋駅前ビル 7階</td></tr><tr><th>上場区分</th><td>未上場・N-1</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>★IPO準備フェーズ：N-1期</li><li>★カジュアル面談スタート可</li><li>★過去入社実績アリ</li></ul><p>Google、リクルート、ヤフー、楽天、日本IBM、メルカリなど、様々な企業で活躍してきたメンバーが多く集まっています。各々の強みが活かされ、メンバー同士で学んだり、刺激を受けることも多い環境です。</p><p>モノグサという社名の通り、『目的合理的であること』を大事にしています。そのため、常に「シンプルに必要なことをやろう」、という文化があります。一方で、だからといってドライな雰囲気ではなく、とても穏やかで善良な雰囲気のメンバーが多く、コミュニケーションもオンライン・オフライン問わず活発に行われています。</p>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2016年8月に設立された、『人の記憶』に向き合っているスタートアップ企業です。記憶への意識や環境を改善し、人類の進歩を後押ししたいという想いから、AIを活用した記憶のプラットフォーム『Monoxer（モノグサ）』を開発・運営しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2016年8月に設立された、『人の記憶』に向き合っているスタートアップ企業です。記憶への意識や環境を改善し、人類の進歩を後押ししたいという想いから、AIを活用した記憶のプラットフォーム『Monoxer（モノグサ）』を開発・運営しています。</p><p>個人経営の塾から上場されている大手塾、学校(公立・私立)、語学教室まで幅広い法人などに導入されており、最近ではフィリピンやミャンマーといった海外での導入や、事業会社における従業員教育で活用される事例も増えています。</p><p>リクルート出身のCEO竹内孝太朗氏と、高校の同級生でグーグルのエンジニアとして働いていたCTO畔柳圭佑氏が2016年に設立。『Monoxer』を導入した教室は、2019年末には70に過ぎなかったが、2020年末には2700、2022年4月には4000を数え、急成長を遂げています。</p><p>2021年12月にはシリーズ B ラウンドで18.1億円を調達され、累積調達額は約23.5億円です。今後は一般企業や介護施設など幅広い業界へのアプローチだけでなく、2022年度からの海外展開を見据えたリサーチも進めており、全世界で400兆円以上のマーケット規模を見込んでいます。</p><p><strong>代表取締役 CEO　竹内 孝太朗氏</strong><br>名古屋大学経済学部卒。2010年に株式会社リクルートに入社。中古車領域での広告営業に従事し、2011年に中古車領域初及び最年少で営業部門の全社表彰を受賞。2013年からは「スタディサプリ」にて高校向け営業組織の立ち上げ、学習到達度測定テストの開発、オンラインコーチングサービスの開発を行う。高校の同級生である畔柳とMonoxerを共同創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 Business Planning/事業企画 (Mgr候補)</div>
+          <div class="job-preview">計画を策定し、その達成に戦略・戦術面でコミットする事業企画ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>BizPlanningのミッション</strong><br>計画を(トップライン側をメインとして)策定し、その達成に戦略・戦術面でコミットする</p><ul><li>策定：中期経営系計画、単年度事業計画、領域別の事業計画 など</li><li>コミット：領域別戦略、コンテンツ戦略、プロジェクト統括、KPI策定、プライシング戦略 など</li></ul><p><strong>業務詳細</strong></p><ul><li><strong>BizPlanningの組織マネジメント</strong><br>ピープルケアという観点より、BizPlanningの人/組織を介して、いかに事業にインパクトを与えれるかという観点でのオーナーシップの発揮</li><li><strong>事業/経営計画の策定</strong><br>経営陣との議論を通して、中期経営計画の策定や事業領域に対する投資規模の検討</li><li><strong>Biz組織に関わる横断的な課題の検討/推進</strong><br>組織編成や権限設計など、組織運営に関する横断的な課題の特定、組織マネジメント施策の検討/推進</li><li><strong>事業開発におけるプロジェクト体制の管理</strong><br>全社横断で運営されている事業開発プロジェクトの体制管理、ならびにクオリティ向上の推進</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>IT系事業会社で事業企画や領域責任者のご経験</li><li>複数の職種を巻き込みながらプロジェクトを動かしてきた経験</li><li>定量情報の分析から課題特定をした経験</li><li>メンバーマネジメントの経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>IT系事業会社で事業企画や領域責任者のご経験</li><li>複数の職種を巻き込みながらプロジェクトを動かしてきた経験</li><li>定量情報の分析から課題特定をした経験</li><li>メンバーマネジメントの経験</li></ul><p><strong>求める人物像</strong></p><ul><li>モノグサのミッションに共感し、記憶事業に想いをもって取り組んでいただける方</li><li>カオスを紐解いて体系化するのがお好きな方</li><li>データとテクノロジーがお好きな方</li><li>スピード感ある事業/組織の変化を楽しめる方</li><li>他組織へのリスペクトもって協働いただける方</li><li>素直で学習意欲が高く、過去の経験に囚われずにアンラーニングを厭わない人</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.monoxer.com/company/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">COO候補</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">Edv Future株式会社（エデュフューチャー）</div>
+  <div class="co-url"><a href="https://edufuture.co.jp/" target="_blank">https://edufuture.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都新宿区新宿２丁目１１−７ 第33宮庭ビル 5F</td></tr><tr><th>上場区分</th><td>未上場</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「テクノロジーとイノベーションで学校教育のスタンダードを創る」ことを掲げ、教育×SaaS領域で本質的な変革に挑むEdTechスタートアップです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「テクノロジーとイノベーションで学校教育のスタンダードを創る」ことを掲げ、教育×SaaS領域で本質的な変革に挑むEdTechスタートアップです。主力プロダクトである教育プラットフォーム「Edv Path」は、これまで偏差値や成績に偏りがちだった評価軸に対し、非認知能力（EQ・GRIT・個性）を可視化することで、生徒一人ひとりの可能性を多面的に捉える仕組みを提供しています。</p><p>早稲田大学の特別研究員の監修のもと、独自の指標を用いて生徒一人ひとりに応じた指導を可能にするサービスを提供しています。サービスリリースからわずか2年で年間46,000アカウントが利用されるまでに成長し、すでに教育現場での導入・評価も着実に進んでいます。また、Good Design賞の受賞実績に代表されるように、社会的な評価も高まっているプロダクトです。</p><p>同社の特徴は、単なるEdTechにとどまらず「教育現場のDX」そのものに深く入り込んでいる点です。教員の業務負荷軽減や指導記録のデータ化など、現場のリアルな課題に向き合いながらプロダクトとして解決策を形にしています。</p><p><strong>代表取締役　山崎 泰正氏</strong><br>2012年にベンチャー企業へ新卒入社。セールスとして全社新人賞、マネジメント賞などを複数受賞。2015年よりフリーランスやスタートアップ企業の創業メンバーとして従事。複数の新規事業立ち上げ、事業責任者、事業開発、採用、組織開発、人事制度設計をボードメンバーとして行う。2019年Edv Future株式会社を創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 COO候補</div>
+          <div class="job-preview">事業拡大フェーズにおける経営・事業運営の責任者候補ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>詳細な募集要項については、企業様との面談にてご確認いただけます。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://edufuture.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが田島弘章 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
